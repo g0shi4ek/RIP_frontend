@@ -1,0 +1,140 @@
+.container {
+  width: 100%;
+  max-width: 1456px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.breadcrumbs-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+.tariff-section {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  background: white;
+}
+
+.tariff-title {
+  color: #171A20;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.tariff-description {
+  color: #5C5E62;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+
+.tariff-image {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+  background: #F4F4F4;
+  border-radius: 12px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5C5E62;
+}
+
+.power-display {
+  padding: 16px 32px;
+  background: #F4F4F4;
+  border-radius: 8px;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.power-value {
+  color: #5C5E62;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.price-section {
+  text-align: center;
+  margin: 24px 0;
+  padding: 16px 32px;
+}
+
+.price-value {
+  color: #171A20;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.price-label {
+  color: #393C41;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 20px;
+    padding: 16px;
+  }
+  
+  .tariff-section {
+    padding: 30px 20px;
+    gap: 20px;
+  }
+  
+  .tariff-title {
+    font-size: 24px;
+  }
+  
+  .tariff-description {
+    font-size: 16px;
+  }
+  
+  .tariff-image {
+    max-width: 300px;
+    height: 200px;
+  }
+  
+  .tariff-details {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .power-display,
+  .price-section {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .tariff-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+}

@@ -1,0 +1,45 @@
+.breadcrumbs {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  padding: 16px 0;
+  margin: 0;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.breadcrumbs * {
+  color: gray;
+  transition: 0.5s;
+  font-size: 14px;
+}
+
+.breadcrumbs *:not(.slash):hover {
+  color: black;
+}
+
+.breadcrumbs li {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breadcrumbs li:last-child {
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    padding: 12px 0;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  
+  .breadcrumbs * {
+    font-size: 12px;
+  }
+}
