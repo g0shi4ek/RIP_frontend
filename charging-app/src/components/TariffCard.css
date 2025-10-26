@@ -1,15 +1,14 @@
 .service-card {
   background: #F4F4F4;
   border-radius: 8px;
+  border: none !important;
   padding: 20px;
-  display: flex;
-  flex-direction: row;
-  min-height: 200px;
-  height: auto;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
   width: 100%;
   max-width: 600px;
+  height: auto;
+  min-height: 200px;
 }
 
 .service-card:hover {
@@ -17,7 +16,7 @@
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
-.service-content { 
+.service-content {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -61,16 +60,16 @@
   margin-top: auto;
 }
 
-.service-image-container{
+.service-image-container {
   width: 140px;
-  min-width: 140px;
-  background: #F4F4F4;
+  height: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 16px;
+  background: #F4F4F4;
+  border-radius: 10px;
 }
- 
+
 .service-image {
   width: 100%;
   height: 100%;
@@ -79,7 +78,7 @@
   object-fit: contain;
 }
 
-.details-btn, .add-btn {
+.details-btn {
   height: 36px;
   border-radius: 4px;
   display: flex;
@@ -92,48 +91,36 @@
   transition: all 0.3s ease;
   padding: 0 12px;
   min-width: 120px;
-  border: none;
+  border: none !important;
   white-space: nowrap;
-}
-
-.details-btn {
-  background: white;
-  color: #393C41;
+  background: white !important;
+  color: #393C41 !important;
 }
 
 .details-btn:hover {
-  background: #e8e8e8;
-}
-
-.add-btn {
-  background: #3E6AE1;
-  color: white;
-  border: none;
-}
-
-.add-btn:hover {
-  background: #2F5AC7;
+  background: #e8e8e8 !important;
 }
 
 @media (max-width: 768px) {
   .service-card {
     height: auto;
-    flex-direction: column;
     max-width: 100%;
-    padding: 16px;
+    padding: 0;
   }
   
   .service-content {
     min-width: unset;
     gap: 12px;
+    padding: 16px;
   }
   
   .service-image-container {
     width: 100%;
     min-width: unset;
     margin-left: 0;
-    margin-top: 16px;
+    margin-top: 0;
     height: 120px;
+    padding: 16px;
   }
   
   .service-image {
@@ -146,7 +133,7 @@
     justify-content: space-between;
   }
   
-  .details-btn, .add-btn {
+  .details-btn {
     min-width: calc(50% - 4px);
     width: calc(50% - 4px);
     height: 40px;
@@ -155,7 +142,7 @@
 }
 
 @media (max-width: 480px) {
-  .service-card {
+  .service-content {
     padding: 16px;
   }
   
@@ -176,7 +163,7 @@
     gap: 8px;
   }
   
-  .details-btn, .add-btn {
+  .details-btn {
     min-width: 100%;
     width: 100%;
     height: 38px;
@@ -184,6 +171,7 @@
   
   .service-image-container {
     height: 100px;
+    padding: 16px;
   }
   
   .service-image {

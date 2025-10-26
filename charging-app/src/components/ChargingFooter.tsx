@@ -1,15 +1,30 @@
 import { FC } from 'react'
+import { Container, Row, Col, Nav } from 'react-bootstrap'
 import './ChargingFooter.css'
 
 export const Footer: FC = () => {
   return (
-    <div className="footer">
-      <div className="footer-content">
-        <div className="footer-item">RIP © 2025</div>
-        <div className="footer-item">Контакты</div>
-        <div className="footer-item">Новости</div>
-        <div className="footer-item">Расположение</div>
-      </div>
-    </div>
+    <footer className="footer">
+      <Container>
+        <Row className="justify-content-center">
+          <Col xs="auto">
+            <Nav className="footer-content">
+              <Nav.Item>
+                <Nav.Link className="footer-item">RIP © 2025</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="footer-item">Контакты</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="footer-item">Новости</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link className="footer-item">Расположение</Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Col>
+        </Row>
+      </Container>
+    </footer>
   )
 }

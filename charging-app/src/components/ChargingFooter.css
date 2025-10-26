@@ -14,16 +14,48 @@
 }
 
 .footer-item {
-  color: #5C5E62;
+  color: #5C5E62 !important;
   font-size: 14px;
   font-weight: 500;
   padding: 8px 16px;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
   border-radius: 4px;
+  text-decoration: none;
+  border: none;
+  background: none;
 }
 
-.footer-item:hover {
-  color: #393C41;
-  background: #F4F4F4;
+.footer-item:hover,
+.footer-item:focus {
+  color: #393C41 !important;
+  background-color: #F4F4F4 !important;
+  text-decoration: none;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 0 40px;
+  }
+  
+  .footer-content {
+    gap: 16px;
+  }
+  
+  .footer-item {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-content {
+    gap: 8px;
+  }
+  
+  .footer-item {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
 }

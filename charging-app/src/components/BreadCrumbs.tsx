@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { Breadcrumb } from 'react-bootstrap'
 import { ROUTES } from '../Routes'
 import './BreadCrumbs.css'
 
@@ -14,20 +15,20 @@ interface BreadCrumbsProps {
 
 export const BreadCrumbs: FC<BreadCrumbsProps> = ({ crumbs }) => {
   return (
-    <ul className="breadcrumb-custom">
-      <li style={{ display: 'inline' }}>
-        <Link to={ROUTES.HOME}>Главная</Link>
-      </li>
+    <Breadcrumb className="breadcrumb-custom">
+      <Breadcrumb.Item linkAs={Link} linkProps={{ to: ROUTES.HOME }}>
+        Главная
+      </Breadcrumb.Item>
       {crumbs.map((crumb, index) => (
-        <li key={index} style={{ display: 'inline', marginLeft: '10px' }}>
-          <span style={{ margin: '0 10px', color: '#5C5E62' }}>/</span>
-          {crumb.path ? (
-            <Link to={crumb.path}>{crumb.label}</Link>
-          ) : (
-            <span style={{ color: '#171A20' }}>{crumb.label}</span>
-          )}
-        </li>
+        <Breadcrumb.Item
+          key={index}
+          linkAs={crumb.path ? Link : undefined}
+          linkProps={crumb.path ? { to: crumb.path } : undefined}
+          active={!crumb.path}
+        >
+          {crumb.label}
+        </Breadcrumb.Item>
       ))}
-    </ul>
+    </Breadcrumb>
   )
 }

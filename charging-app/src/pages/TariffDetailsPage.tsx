@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Container, Row, Col } from 'react-bootstrap'
 import { BreadCrumbs } from '../components/BreadCrumbs'
 import { getTariffById, Tariff } from '../modules/chargingApi'
 import { ROUTES, ROUTE_LABELS } from '../Routes'
@@ -47,39 +48,47 @@ export const TariffDetailsPage: FC = () => {
   }
 
   return (
-    <div className="container">
-      <div className="breadcrumbs-container">
-        <BreadCrumbs
-          crumbs={[
-            { label: ROUTE_LABELS.TARIFFS, path: ROUTES.TARIFFS },
-            { label: tariff.nameof_tariff }
-          ]}
-        />
-      </div>
+    <Container fluid className="container">
+      <Row className="breadcrumbs-container">
+        <Col>
+          <BreadCrumbs
+            crumbs={[
+              { label: ROUTE_LABELS.TARIFFS, path: ROUTES.TARIFFS },
+              { label: tariff.nameof_tariff }
+            ]}
+          />
+        </Col>
+      </Row>
 
-      <div className="tariff-section">
-        <div className="tariff-title">{tariff.nameof_tariff}</div>
-        <div className="tariff-description">{tariff.description}</div>
-        
-        <img 
-          className="tariff-image"
-          src={tariff.image_url || defaultImage}
-          alt={tariff.nameof_tariff}
-          onError={(e) => {
-            const target = e.target as HTMLImageElement
-            target.src = defaultImage
-          }}
-        />
-        
-        <div className="power-display">
-            <div className="power-value">Мощность {tariff.power} КВт</div>
-        </div>
+      <Row className="justify-content-center">
+        <Col xs={12}>
+          <div className="tariff-section">
+            <div className="tariff-title">{tariff.nameof_tariff}</div>
+            <div className="tariff-description">{tariff.description}</div>
             
-        <div className="price-section">
-            <div className="price-value">{tariff.price_per_hour}  ₽/час</div>
-            <div className="price-label">Цена тарифа за час</div>
-        </div>
-      </div>
-    </div>
+            <div className="my-4">
+              <img 
+                className="tariff-image"
+                src={tariff.image_url || defaultImage}
+                alt={tariff.nameof_tariff}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.src = defaultImage
+                }}
+              />
+            </div>
+            
+            <div className="power-display">
+              <div className="power-value">Мощность {tariff.power} КВт</div>
+            </div>
+                
+            <div className="price-section">
+              <div className="price-value">{tariff.price_per_hour} ₽/час</div>
+              <div className="price-label">Цена тарифа за час</div>
+            </div>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   )
 }

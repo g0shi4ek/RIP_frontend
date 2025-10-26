@@ -56,6 +56,8 @@
   align-items: center;
   justify-content: center;
   color: #5C5E62;
+  object-fit: contain;
+  padding: 20px;
 }
 
 .power-display {
@@ -64,18 +66,23 @@
   border-radius: 8px;
   margin: 16px 0;
   text-align: center;
+  width: 100%;
+  max-width: 400px;
 }
 
 .power-value {
   color: #5C5E62;
   font-size: 16px;
   font-weight: 500;
+  margin: 0;
 }
 
 .price-section {
   text-align: center;
   margin: 24px 0;
   padding: 16px 32px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .price-value {
@@ -83,6 +90,7 @@
   font-size: 32px;
   font-weight: 300;
   line-height: 1.2;
+  margin: 0;
 }
 
 .price-label {
@@ -90,12 +98,34 @@
   font-size: 16px;
   font-weight: 400;
   margin-top: 8px;
+  margin-bottom: 0;
 }
 
 .text-center {
   text-align: center;
 }
 
+.loadingBg {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #5C5E62;
+}
+
+/* Стили для Bootstrap компонентов */
+.container-fluid {
+  padding: 0;
+}
+
+.row {
+  margin: 0;
+}
+
+.col {
+  padding: 0;
+}
+
+/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .container {
     gap: 20px;
@@ -120,21 +150,9 @@
     height: 200px;
   }
   
-  .tariff-details {
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-  }
-  
   .power-display,
   .price-section {
     max-width: 100%;
     width: 100%;
-  }
-  
-  .tariff-actions {
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
   }
 }

@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { Card, Button, Row, Col } from 'react-bootstrap'
 import { Tariff } from '../modules/chargingApi'
 import './TariffCard.css'
 import defaultImage from '../assets/image.png'
@@ -10,28 +11,42 @@ interface ServiceCardProps {
 
 export const ServiceCard: FC<ServiceCardProps> = ({ tariff }) => {
   return (
-    <div className="service-card">
-      <div className="service-content">
-        <div className="service-title">{tariff.nameof_tariff}</div>
-        <div className="service-description">{tariff.description}</div>
-        <div className="service-price">{tariff.price_per_hour} ₽/час</div>
-        <div className="service-buttons">
-          <Link to={`/tariff/${tariff.id}`} className="details-btn">
-            Подробнее
-          </Link>
-        </div>
-      </div>
-      <div className="service-image-container">
-        <img 
-          className="service-image"
-          src={tariff.image_url || defaultImage}
-          alt={tariff.nameof_tariff}
-          onError={(e) => {
-            const target = e.target as HTMLImageElement
-            target.src = defaultImage
-          }}
-        />
-      </div>
-    </div>
+    <Card className="service-card">
+      <Row className="g-0 h-100">
+        <Col md={8}>
+          <Card.Body className="service-content">
+            <Card.Title className="service-title">{tariff.nameof_tariff}</Card.Title>
+            <Card.Text className="service-description">
+              {tariff.description}
+            </Card.Text>
+            <div className="service-price">{tariff.price_per_hour} ₽/час</div>
+            <div className="service-buttons">
+              <Button 
+                as={Link as any}
+                to={`/tariff/${tariff.id}`}
+                variant="outline-secondary"
+                className="details-btn"
+              >
+                Подробнее
+              </Button>
+            </div>
+          </Card.Body>
+        </Col>
+        <Col md={4}>
+          <div className="justify-content-center service-image-container">
+            <Card.Img
+              variant="top"
+              className="service-image"
+              src={tariff.image_url || defaultImage}
+              alt={tariff.nameof_tariff}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement
+                target.src = defaultImage
+              }}
+            />
+          </div>
+        </Col>
+      </Row>
+    </Card>
   )
 }

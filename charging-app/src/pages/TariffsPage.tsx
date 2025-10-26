@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { useState, useEffect } from 'react'
+import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap'
 import { BreadCrumbs } from '../components/BreadCrumbs'
 import { InputField } from '../components/InputField'
 import { ServiceCard } from '../components/TariffCard'
@@ -19,7 +20,7 @@ export const TariffsPage: FC = () => {
 
   useEffect(() => {
     loadTariffs()
-  }, [])
+  }, [filters]) // Загружаем тарифы при изменении фильтров
 
   const loadTariffs = async () => {
     setLoading(true)
@@ -35,43 +36,52 @@ export const TariffsPage: FC = () => {
 
   const handleSearch = () => {
     setFilters(prev => ({ ...prev, name: searchValue }))
-    loadTariffs()
   }
 
   return (
-    <div className={`container ${loading && 'containerLoading'}`}>
-      <div className="breadcrumbs-container">
-        <BreadCrumbs crumbs={[{ label: ROUTE_LABELS.TARIFFS }]} />
-      </div>
+    <Container fluid className={`custom-container ${loading ? 'containerLoading' : ''}`}>
+      <Row className="breadcrumbs-container justify-content-center">
+        <Col xs={12} lg={10} xl={8}>
+          <BreadCrumbs crumbs={[{ label: ROUTE_LABELS.TARIFFS }]} />
+        </Col>
+      </Row>
 
-      <div className="search-section">
-        <InputField
-          value={searchValue}
-          onChange={setSearchValue}
-          onSubmit={handleSearch}
-          placeholder="Поиск по названию тарифа..."
-          buttonTitle="Найти"
-        />
-      </div>
+      <Row className="search-section justify-content-center">
+        <Col xs={12} lg={8} xl={6}>
+          <InputField
+            value={searchValue}
+            onChange={setSearchValue}
+            onSubmit={handleSearch}
+            placeholder="Поиск по названию тарифа..."
+            buttonTitle="Найти"
+          />
+        </Col>
+      </Row>
 
-      {loading && <div className="loadingBg">Загрузка...</div>}
+      {loading && (
+        <Row className="justify-content-center">
+          <Col xs="auto">
+            <div className="d-flex align-items-center">
+              <Spinner animation="border" variant="primary" className="me-2" />
+              <span>Загрузка...</span>
+            </div>
+          </Col>
+        </Row>
+      )}
 
       <div className="service-section">
-        {tariffs.length === 0 ? (
-          <div className="text-center">
-            <h1>К сожалению, пока ничего не найдено :(</h1>
-          </div>
+        {tariffs.length === 0 && !loading ? (
+          <Alert variant="info" className="text-center">
+            <h5>К сожалению, пока ничего не найдено :(</h5>
+          </Alert>
         ) : (
           tariffs.map(tariff => (
-            <ServiceCard
-              key={tariff.id}
-              tariff={tariff}
-            />
+            <ServiceCard key={tariff.id} tariff={tariff} />
           ))
         )}
       </div>
 
       <FloatingCart itemCount={3} />
-    </div>
+    </Container>
   )
 }

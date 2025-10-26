@@ -1,4 +1,5 @@
-import { FC } from 'react'
+import { FC, FormEvent } from 'react'
+import { Form, InputGroup, Button } from 'react-bootstrap'
 import './InputField.css'
 
 interface InputFieldProps {
@@ -16,25 +17,29 @@ export const InputField: FC<InputFieldProps> = ({
   placeholder = "Поиск...",
   buttonTitle = "Найти"
 }) => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     onSubmit()
   }
 
   return (
-    <form onSubmit={handleSubmit} className="search-container">
-      <div className="search-input">
-        <input
+    <Form onSubmit={handleSubmit} className="search-container">
+      <InputGroup className="search-input-group">
+        <Form.Control
           type="text"
-          className="search-field"
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          className="search-field"
         />
-      </div>
-      <button type="submit" className="search-btn">
-        {buttonTitle}
-      </button>
-    </form>
+        <Button 
+          variant="outline-secondary" 
+          type="submit"
+          className="search-btn"
+        >
+          {buttonTitle}
+        </Button>
+      </InputGroup>
+    </Form>
   )
 }
