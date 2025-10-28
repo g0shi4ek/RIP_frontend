@@ -92,7 +92,6 @@
   padding: 0 10px;
 }
 
-/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .custom-container {
     gap: 30px;
@@ -157,7 +156,6 @@
   }
 }
 
-/* Дополнительные стили для Bootstrap компонентов */
 .container-fluid {
   padding: 0;
 }

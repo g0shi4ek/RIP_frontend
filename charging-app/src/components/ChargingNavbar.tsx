@@ -19,7 +19,7 @@ export const CustomNavbar: FC = () => {
         </Navbar.Brand>
         
         <Nav className="ms-auto">
-          <Nav.Link as={Link} to="/tariffs" className="icon">
+          <Nav.Link as={Link} to="/" className="icon">
             <img 
               src={iconImg}
               alt="User menu icons" 

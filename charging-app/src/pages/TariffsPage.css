@@ -35,7 +35,6 @@
   filter: blur(8px);
 }
 
-/* Стили для Bootstrap компонентов */
 .container-fluid {
   padding: 0;
 }
@@ -48,7 +47,6 @@
   padding: 0;
 }
 
-/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .custom-container {
     gap: 24px;

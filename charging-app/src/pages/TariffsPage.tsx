@@ -81,7 +81,7 @@ export const TariffsPage: FC = () => {
         )}
       </div>
 
-      <FloatingCart itemCount={3} />
+      <FloatingCart/>
     </Container>
   )
 }

@@ -33,7 +33,6 @@
   text-decoration: none;
 }
 
-/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .footer {
     padding: 30px 0 40px;
