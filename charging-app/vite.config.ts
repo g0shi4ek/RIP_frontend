@@ -5,12 +5,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    /*proxy: {
+    proxy: {
       "/api": {
-        target: "http://host.docker.internal:8080",
+        //target: "http://host.docker.internal:8080",
+        target: "http://localhost:8080",
         changeOrigin: true,
       },
-    },*/
+    },
     watch: {
         usePolling: true,
     }, 

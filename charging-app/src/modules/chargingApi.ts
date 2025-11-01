@@ -13,7 +13,14 @@ export interface TariffFilters {
     name?: string
 }
 
+export interface CartDraft {
+    id: number
+    amount_of_orders: number
+}
+
 const API_BASE_URL = '/api'
+
+
 
 export const getTariffs = async (filters: TariffFilters = {}): Promise<Tariff[]> => {
     try {
@@ -59,4 +66,18 @@ const getMockTariffs = (filters: TariffFilters = {}): Tariff[] => {
         )
     }
     return filteredTariffs
+}
+
+
+export const getCartDraft = async (): Promise<CartDraft> => {
+    const response = await fetch(`${API_BASE_URL}/chargingApplications/draft`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`, // или твой способ авторизации
+            'Content-Type': 'application/json'
+        }
+    })  
+    if (!response.ok) {
+        throw new Error('Ошибка при загрузке корзины')
+    } 
+    return response.json()
 }
