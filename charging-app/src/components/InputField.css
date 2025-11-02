@@ -11,6 +11,7 @@
   max-width: 500px;
   height: 52px;
   border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
   overflow: hidden;
 }
 
@@ -27,10 +28,9 @@
 }
 
 .search-field:focus {
-  background: #F4F4F4;
-  border: none;
-  box-shadow: none;
-  color: #393C41;
+  border: none !important;
+  color: #393C41 !important;
+  box-shadow: none !important;
 }
 
 .search-btn {
@@ -58,38 +58,15 @@
   box-shadow: none !important;
 }
 
-/* Стили для устаревшего компонента (если где-то еще используется) */
-.inputField {
-  display: flex;
-  padding: 12px 0;
-}
-
-.inputField > input {
-  width: 200px;
-  margin-right: 12px;
-  border: 2px solid black;
-  border-radius: 4px;
-  outline: none;
-  padding: 8px 12px;
-  font-size: 14px;
-}
-
-/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
-  .search-container {
-    flex-direction: column;
-    align-items: center;
-    padding: 0 16px;
-  }
-  
   .search-input-group {
     max-width: 100%;
-    height: 48px;
+    height: 40px;
   }
   
   .search-btn {
     width: 90px;
-    height: 48px;
+    height: 40px;
     font-size: 15px;
   }
   
@@ -106,22 +83,5 @@
   .inputField > input {
     width: 100%;
     margin-right: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .search-input-group {
-    height: 44px;
-  }
-  
-  .search-btn {
-    width: 80px;
-    height: 44px;
-    font-size: 14px;
-  }
-  
-  .search-field {
-    font-size: 14px;
-    padding: 10px 12px;
   }
 }

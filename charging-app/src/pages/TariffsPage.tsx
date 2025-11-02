@@ -5,26 +5,31 @@ import { BreadCrumbs } from '../components/BreadCrumbs'
 import { InputField } from '../components/InputField'
 import { ServiceCard } from '../components/TariffCard'
 import { FloatingCart } from '../components/ChargingFloatingCart'
-import { getTariffs, Tariff, TariffFilters } from '../modules/chargingApi'
+import { getTariffs, Tariff } from '../modules/chargingApi'
 import { ROUTE_LABELS } from '../Routes'
+import { useSearchInput, useAppliedSearch } from '../slices/filterTariffSlices'
+import { useFiltersData } from '../hooks/useFiltersData'
 import './TariffsPage.css'
 
 export const TariffsPage: FC = () => {
   const [tariffs, setTariffs] = useState<Tariff[]>([])
   const [loading, setLoading] = useState(false)
-  const [searchValue, setSearchValue] = useState('')
   
-  const [filters, setFilters] = useState<TariffFilters>({
-    name: '',
-  })
+  // Используем разделенные состояния
+  const { setSearchInput, applySearch } = useFiltersData()
+  const searchInput = useSearchInput() // то, что вводит пользователь
+  const appliedSearch = useAppliedSearch() // то, что применено как фильтр
 
+  // Загружаем тарифы только при изменении примененного фильтра
   useEffect(() => {
     loadTariffs()
-  }, [filters]) // Загружаем тарифы при изменении фильтров
+  }, [appliedSearch]) // Только appliedSearch триггерит загрузку
 
   const loadTariffs = async () => {
     setLoading(true)
     try {
+      // Создаем фильтры на основе appliedSearch (а не searchInput)
+      const filters = appliedSearch ? { name: appliedSearch } : {}
       const data = await getTariffs(filters)
       setTariffs(data)
     } catch (err) {
@@ -35,7 +40,7 @@ export const TariffsPage: FC = () => {
   }
 
   const handleSearch = () => {
-    setFilters(prev => ({ ...prev, name: searchValue }))
+    applySearch() // применяем фильтр только при нажатии кнопки
   }
 
   return (
@@ -49,9 +54,9 @@ export const TariffsPage: FC = () => {
       <Row className="search-section justify-content-center">
         <Col xs={12} lg={8} xl={6}>
           <InputField
-            value={searchValue}
-            onChange={setSearchValue}
-            onSubmit={handleSearch}
+            value={searchInput} // показываем то, что вводит пользователь
+            onChange={setSearchInput} // обновляем только поле ввода
+            onSubmit={handleSearch} // применяем фильтр только при отправке
             placeholder="Поиск по названию тарифа..."
             buttonTitle="Найти"
           />

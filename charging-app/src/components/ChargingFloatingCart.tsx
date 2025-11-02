@@ -1,45 +1,14 @@
-import { FC, useState, useEffect } from 'react'
+import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from 'react-bootstrap'
-import { getCartDraft } from '../modules/chargingApi' // предполагаемый API метод
+import { useCartData } from '../hooks/useCartData'
+import { useCartData as useCartDataSelector } from '../slices/chargingCartSlices'
 import './ChargingFloatingCart.css'
 
-interface CartData {
-  id: number
-  amount_of_orders: number
-}
-
-interface FloatingCartProps {
-  //пропсы для перезагрузки
-  onCartUpdate?: () => void
-}
-
-export const FloatingCart: FC<FloatingCartProps> = ({ 
-  onCartUpdate 
-}) => {
-  const [cartData, setCartData] = useState<CartData>({ id: -1, amount_of_orders: 0 })
-
-  const loadCartData = async () => {
-    try {
-      const data = await getCartDraft() // GET /api/chargingApplications/draft
-      setCartData(data)
-    } catch (err) {
-      // значения по умолчанию
-      setCartData({ id: -1, amount_of_orders: 0 })
-    }
-  }
-
-  useEffect(() => {
-    loadCartData()
-  }, [])
-
-  //потом для добавления в заявку
-  useEffect(() => {
-    if (onCartUpdate) {
-      loadCartData()
-    }
-  }, [onCartUpdate])
-
+export const FloatingCart: FC = () => {
+  useCartData() // загружаем данные корзины
+  const cartData = useCartDataSelector()
+  
   const isCartActive = cartData.id !== -1
   
   if (isCartActive) {
