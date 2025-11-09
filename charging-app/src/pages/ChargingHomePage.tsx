@@ -1,7 +1,5 @@
 import type { FC } from 'react'
-import { Link } from 'react-router-dom'
-import { Container, Row, Col, Button } from 'react-bootstrap'
-import { ROUTES } from '../Routes'
+import { Container, Row, Col} from 'react-bootstrap'
 import './ChargingHomePage.css'
 
 export const HomePage: FC = () => {
@@ -14,16 +12,6 @@ export const HomePage: FC = () => {
             <p className="hero-subtitle">
               Зарядите ваш автомобиль до 80% всего за 30 минут
             </p>
-            <div className="hero-buttons">
-              <Button 
-                as={Link as any}
-                to={ROUTES.TARIFFS}
-                className="hero-btn"
-                size="lg"
-              >
-                Доступные тарифы
-              </Button>
-            </div>
             <Row className="features-grid justify-content-center">
               <Col xs={12} md={4} className="feature-item">
                 Широкий выбор тарифов под любой бюджет

@@ -4,6 +4,27 @@
   border-bottom: 1px solid #F4F4F4;
   margin-bottom: 50px;
   padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+}
+
+/* Основной контейнер навбара */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  min-height: 86px;
+}
+
+/* Правая часть навбара */
+.navbar-right-content {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
 }
 
 .logo {
@@ -11,6 +32,7 @@
   min-width: 240px;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .icon {
@@ -34,6 +56,9 @@
 /* Стили для навбара Bootstrap */
 .navbar {
   padding: 0;
+  position: fixed !important;
+  top: 0 !important;
+  width: 100% !important;
 }
 
 .navbar-brand {
@@ -45,37 +70,138 @@
   padding: 0;
 }
 
+/* Стили для выпадающего меню */
+.custom-dropdown {
+  position: static !important;
+}
+
+.custom-dropdown .dropdown-toggle {
+  color: #333 !important;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: white;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  min-width: 80px;
+  border: none !important;
+  outline: none !important;
+}
+
+.custom-dropdown .dropdown-toggle:hover,
+.custom-dropdown .dropdown-toggle:focus {
+  background: #f4f4f4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #19191a !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.custom-dropdown .dropdown-toggle:active,
+.custom-dropdown .show .dropdown-toggle {
+  background: #f4f4f4 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.custom-dropdown .dropdown-toggle::after {
+  margin-left: 8px;
+}
+
+/* Стили для десктопных экранов */
+.custom-dropdown .dropdown-menu {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  margin-top: 8px;
+}
+
+.custom-dropdown .dropdown-item {
+  padding: 10px 16px;
+  color: #333;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+.custom-dropdown .dropdown-item:hover {
+  background: #f8f9fa;
+  color: #007bff;
+}
+
+.custom-dropdown .dropdown-divider {
+  margin: 8px 0;
+  border-color: #e0e0e0;
+}
+
+/* Гарантируем, что элементы не переносятся */
+.navbar > .container-fluid {
+  flex-wrap: nowrap !important;
+}
+
+.navbar-nav {
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+}
+
+/* Отключаем все трансформации Bootstrap */
+.navbar-collapse {
+  position: static !important;
+  transform: none !important;
+  height: auto !important;
+}
+
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .header {
     height: 72px;
   }
   
-  .container-fluid {
+  .navbar-container {
+    min-height: 72px;
     padding-left: 24px;
     padding-right: 24px;
   }
   
   .logo {
-    width: 200px;
-    min-width: 200px;
+    width: 160px;
+    min-width: 160px;
   }
   
   .logo img {
     width: 80px;
     height: 48px;
   }
+  
+  .custom-dropdown .dropdown-toggle {
+    padding: 6px 12px;
+    font-size: 14px;
+    min-width: 70px;
+  }
+  
+  /* Фиксированное позиционирование только для мобильных */
+  .custom-dropdown .dropdown-menu {
+    position: fixed !important;
+    transform: none !important;
+    top: 70px !important;
+    right: 20px !important;
+    left: auto !important;
+    min-width: 160px;
+  }
 }
 
 @media (max-width: 576px) {
-  .container-fluid {
+  .navbar-container {
     padding-left: 16px;
     padding-right: 16px;
   }
   
   .logo {
-    width: 180px;
-    min-width: 180px;
+    width: 140px;
+    min-width: 140px;
   }
   
   .logo img {
@@ -83,8 +209,73 @@
     height: 42px;
   }
   
-  .icon img {
-    width: 24px;
-    height: 24px;
+  .custom-dropdown .dropdown-toggle {
+    padding: 5px 10px;
+    font-size: 13px;
+    min-width: 65px;
+  }
+  
+  .custom-dropdown .dropdown-item {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .custom-dropdown .dropdown-menu {
+    top: 65px !important;
+    right: 15px !important;
+    min-width: 140px;
+  }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 400px) {
+  .logo {
+    width: 120px;
+    min-width: 120px;
+  }
+  
+  .logo img {
+    width: 60px;
+    height: 36px;
+  }
+  
+  .custom-dropdown .dropdown-toggle {
+    padding: 4px 8px;
+    font-size: 12px;
+    min-width: 60px;
+  }
+  
+  .custom-dropdown .dropdown-menu {
+    top: 60px !important;
+    right: 10px !important;
+    min-width: 120px;
+  }
+}
+
+/* Убираем все возможные смещения */
+.navbar-collapse.collapsing,
+.navbar-collapse.collapse.show {
+  position: static !important;
+  transform: none !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Фиксируем dropdown меню на месте только для мобильных */
+@media (max-width: 768px) {
+  .dropdown-menu.show {
+    position: fixed !important;
+    transform: none !important;
+  }
+}
+
+/* Для десктопных экранов возвращаем нормальное поведение */
+@media (min-width: 769px) {
+  .custom-dropdown .dropdown-menu {
+    position: absolute !important;
+  }
+  
+  .dropdown-menu.show {
+    position: absolute !important;
   }
 }
