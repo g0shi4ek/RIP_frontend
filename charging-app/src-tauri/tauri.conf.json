@@ -2,10 +2,10 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "charging-app",
   "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "io.github.yourusername.charging-app",
   "build": {
-    "frontendDist": "../build",
-    "devUrl": "https://localhost:3000",
+    "frontendDist": "../dist",
+    "devUrl": "https://localhost:3000/RIP_frontend/",
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build"
   },

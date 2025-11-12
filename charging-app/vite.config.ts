@@ -18,7 +18,7 @@ export default defineConfig({
       manifest: {
         name: "Charging App",
         short_name: "Charging",
-        start_url: "/RIP_frontend/",
+        start_url: "./",
         display: "standalone",
         background_color: "#ffffff",
         theme_color: "#171A20",
@@ -44,7 +44,7 @@ export default defineConfig({
       }
     }),
   ],
-  base: "/RIP_frontend/",
+  base: './',
   server: {
     https:{
       key: fs.readFileSync(path.resolve(__dirname, 'cert.key')),
@@ -53,7 +53,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         //target: "http://host.docker.internal:8080",
-        target: "http://192.168.0.247:8080",
+        target: "http://192.168.56.1:8080",
         changeOrigin: true,
       },
     },

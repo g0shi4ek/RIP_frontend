@@ -15,7 +15,7 @@ if ("serviceWorker" in navigator) {
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/RIP_frontend"> {/* имя репозитория */}
+      <BrowserRouter basename={import.meta.env.PROD ? '' : ''}> {/* имя репозитория */}
         <App />
       </BrowserRouter>
     </Provider>
