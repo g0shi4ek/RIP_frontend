@@ -5,9 +5,14 @@
   "identifier": "io.github.yourusername.charging-app",
   "build": {
     "frontendDist": "../dist",
-    "devUrl": "https://localhost:3000/RIP_frontend/",
+    "devUrl": "https://172.23.208.1:3000/",
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build"
+  },
+  "plugins": {
+    "http": {
+      "enabled": true
+    }
   },
   "app": {
     "windows": [

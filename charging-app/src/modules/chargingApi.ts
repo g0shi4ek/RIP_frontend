@@ -1,4 +1,5 @@
 import { MOCK_TARIFFS } from "./mock"
+import { API_BASE_URL } from "../target_config"
 
 export interface Tariff {
     id: number
@@ -17,10 +18,6 @@ export interface CartDraft {
     id: number
     amount_of_orders: number
 }
-
-const API_BASE_URL = '/api'
-
-
 
 export const getTariffs = async (filters: TariffFilters = {}): Promise<Tariff[]> => {
     try {
