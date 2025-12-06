@@ -7,6 +7,30 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  define: {
+    'process.env': {}
+  },
+  base: '/',
+  server: {
+    port: 3000,
+    proxy: {
+      "/api-proxy": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api-proxy/, "/api"),
+      },
+      "/img-proxy": {
+        target: "http://localhost:9000", 
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/img-proxy/, ""),
+      },
+    },
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'cert.key')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'cert.crt')),
+    },
+    host: 'localhost',
+  },
   plugins: [
     react(),
     mkcert(),
@@ -44,24 +68,7 @@ export default defineConfig({
       }
     }),
   ],
-  base: '/',
-  server: {
-    https:{
-      key: fs.readFileSync(path.resolve(__dirname, 'cert.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'cert.crt')),
-    },
-    proxy: {
-      "/api": {
-        //target: "http://host.docker.internal:8080",
-        target: "http://localhost:8080",
-        changeOrigin: true,
-      },
-    },
-    watch: {
-        usePolling: true,
-    }, 
-    host: '172.23.208.1',
-    strictPort: true,
-    port: 3000,
+  build: {
+    outDir: 'dist',
   },
 });

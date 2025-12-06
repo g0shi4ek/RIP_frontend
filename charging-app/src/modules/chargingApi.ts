@@ -1,5 +1,5 @@
 import { MOCK_TARIFFS } from "./mock"
-import { API_BASE_URL } from "../target_config"
+import { dest_api } from '../target_config';
 
 export interface Tariff {
     id: number
@@ -24,7 +24,7 @@ export const getTariffs = async (filters: TariffFilters = {}): Promise<Tariff[]>
         const queryParams = new URLSearchParams()
         if (filters.name) queryParams.append('tariffName', filters.name)
 
-        const response = await fetch(`${API_BASE_URL}/tariffs?${queryParams}`)
+        const response = await fetch(`${dest_api}/tariffs?${queryParams}`)
         
         if (!response.ok) {
         throw new Error('Network response was not ok')
@@ -38,7 +38,7 @@ export const getTariffs = async (filters: TariffFilters = {}): Promise<Tariff[]>
 
 export const getTariffById = async (id: number): Promise<Tariff> => {
     try {
-        const response = await fetch(`${API_BASE_URL}/tariffs/${id}`)
+        const response = await fetch(`${dest_api}/tariffs/${id}`)
         
         if (!response.ok) {
             throw new Error('Network response was not ok')
@@ -67,9 +67,9 @@ const getMockTariffs = (filters: TariffFilters = {}): Tariff[] => {
 
 
 export const getCartDraft = async (): Promise<CartDraft> => {
-    const response = await fetch(`${API_BASE_URL}/chargingApplications/draft`, {
+    const response = await fetch(`${dest_api}/chargingApplications/draft`, {
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`, // или твой способ авторизации
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
         }
     })  
